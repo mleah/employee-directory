@@ -1,14 +1,24 @@
 import React from "react";
+import {useHistory} from "react-router-dom";
 import {Card, CardActionArea, CardContent, CardMedia, Typography} from "@mui/material";
 import {Profile} from "./profileModels";
-import {Link as RouterLink} from "react-router-dom";
+import {profileSlice} from "./profileSlice";
+import {useAppDispatch} from "../../app/hooks";
 
 function ProfileCard(props: {profile: Profile}) {
     const {profile} = props;
+    const setSelectedProfile = profileSlice.actions.setSelectedProfile;
+    const dispatch = useAppDispatch();
+    const history = useHistory();
+
+    const onCardActionClick = () => {
+        dispatch(setSelectedProfile(profile.id));
+        history.push(`/employeeDirectory/profile/${profile.id}`);
+    }
 
     return (
         <Card className="profile" sx={{ width: 345, backgroundColor: "#f0e7ce" }}>
-            <CardActionArea component={RouterLink} to={`/employeeDirectory/profile/${profile.id}`} onClick={() => console.log("Clicked on profile ", profile.id)}>
+            <CardActionArea onClick={onCardActionClick}>
                 <CardMedia
                     component="img"
                     height="100px"
@@ -24,9 +34,6 @@ function ProfileCard(props: {profile: Profile}) {
                     </Typography>
                     <Typography variant="body1" component="div">
                         {profile.phone}
-                    </Typography>
-                    <Typography variant="body2" component="div">
-                        {profile.address} {profile.city}, {profile.state} {profile.zip}
                     </Typography>
                 </CardContent>
             </CardActionArea>

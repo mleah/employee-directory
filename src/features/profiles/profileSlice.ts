@@ -1,4 +1,4 @@
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {Profile} from "./profileModels";
 import {apiKey, apiProfilesUrl} from "../../constants";
 import {RootState} from "../../app/store";
@@ -6,11 +6,14 @@ import {RootState} from "../../app/store";
 type EmployeesState = {
     all_profiles: Profile[];
     status: "fulfilled" | "failed" | "loading" | "";
+    selected_profile: number;
 }
 
 const initialState: EmployeesState = {
     all_profiles: [],
     status: "",
+    //using 0 as placeholder as it's generally a safe assumption that a userid isn't zero
+    selected_profile: 0,
 };
 
 export const fetchAllProfiles = createAsyncThunk<any[]>(
@@ -29,6 +32,9 @@ export const profileSlice = createSlice({
     name: 'profiles',
     initialState,
     reducers: {
+        setSelectedProfile: (state, action: PayloadAction<number>) => {
+            state.selected_profile = action.payload;
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -47,5 +53,6 @@ export const profileSlice = createSlice({
 
 // Selectors
 export const selectAllProfiles = (state: RootState) => state.profiles.all_profiles;
+export const selectCurrentProfile = (state: RootState) => state.profiles.all_profiles.find(x => x.id === state.profiles.selected_profile);
 
 export default profileSlice.reducer;
