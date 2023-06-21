@@ -1,11 +1,15 @@
 import React from "react";
 import {useSelector} from "react-redux";
+import {useHistory} from "react-router-dom";
 import {Avatar, Box, Button, Typography} from "@mui/material";
 import {selectCurrentProfile} from "./profileSlice";
 
 
 function ProfilePage() {
     const profileData = useSelector(selectCurrentProfile);
+    const history = useHistory();
+
+    const handleEditClick = () => history.push(`/employeeDirectory/profile/${profileData?.id}/edit`);
 
     return (
         <>
@@ -39,7 +43,7 @@ function ProfilePage() {
                         <Typography gutterBottom variant="body2">
                             {profileData.address} {profileData.city}, {profileData.state} {profileData.zip}
                         </Typography>
-                        <Button variant="outlined" onClick={() =>{}}>Edit</Button>
+                        <Button variant="outlined" onClick={handleEditClick}>Edit</Button>
                     </div>
                 </Box>
             ) : (
