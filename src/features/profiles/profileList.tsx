@@ -1,9 +1,9 @@
 import React, {useEffect} from "react";
+import {useSelector} from "react-redux";
+import {Grid, Typography} from "@mui/material";
 import ProfileCard from "./profileCard";
 import {fetchAllProfiles, selectAllProfiles} from "./profileSlice";
 import {useAppDispatch} from "../../app/hooks";
-import {useSelector} from "react-redux";
-import {Grid, Typography} from "@mui/material";
 
 function ProfileList() {
     const dispatch = useAppDispatch();
