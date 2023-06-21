@@ -1,13 +1,14 @@
 import React from "react";
 import {Card, CardActionArea, CardContent, CardMedia, Typography} from "@mui/material";
 import {Profile} from "./profileModels";
-;
+import {Link as RouterLink} from "react-router-dom";
+
 function ProfileCard(props: {profile: Profile}) {
     const {profile} = props;
 
     return (
         <Card className="profile" sx={{ width: 345, backgroundColor: "#f0e7ce" }}>
-            <CardActionArea onClick={() => console.log("Clicked on profile ", profile.id)}>
+            <CardActionArea component={RouterLink} to={`/employeeDirectory/profile/${profile.id}`} onClick={() => console.log("Clicked on profile ", profile.id)}>
                 <CardMedia
                     component="img"
                     height="100px"
