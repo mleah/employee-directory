@@ -1,6 +1,7 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {Profile} from "./profileModels";
 import {apiKey, apiProfilesUrl} from "../../constants";
+import {RootState} from "../../app/store";
 
 type EmployeesState = {
     all_profiles: Profile[];
@@ -19,7 +20,6 @@ export const fetchAllProfiles = createAsyncThunk<any[]>(
                 "token": apiKey
             },
         })
-        console.log("am I alive?");
         return (await response.json());
     }
 );
@@ -38,12 +38,14 @@ export const profileSlice = createSlice({
             .addCase(fetchAllProfiles.fulfilled, (state, action) => {
                 state.status = 'fulfilled';
                 state.all_profiles = action.payload;
-                console.log("Here's some profiles!!", action.payload);
             })
             .addCase(fetchAllProfiles.rejected, (state) => {
                 state.status = 'failed';
             })
     },
 });
+
+// Selectors
+export const selectAllProfiles = (state: RootState) => state.profiles.all_profiles;
 
 export default profileSlice.reducer;

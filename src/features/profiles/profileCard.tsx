@@ -1,20 +1,31 @@
 import React from "react";
-import {Card, CardActionArea, CardContent, Typography} from "@mui/material";
-
-function ProfileCard() {
+import {Card, CardActionArea, CardContent, CardMedia, Typography} from "@mui/material";
+import {Profile} from "./profileModels";
+;
+function ProfileCard(props: {profile: Profile}) {
+    const {profile} = props;
 
     return (
         <Card className="profile" sx={{ width: 345, backgroundColor: "#f0e7ce" }}>
-            <CardActionArea onClick={() => console.log("HI")}>
+            <CardActionArea onClick={() => console.log("Clicked on profile ", profile.id)}>
+                <CardMedia
+                    component="img"
+                    height="100px"
+                    image={profile.photo}
+                    sx={{ objectFit: "contain", paddingTop: "1rem" }}
+                />
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
-                        Bob Boblahbalh
+                        {profile.first_name} {profile.last_name}
                     </Typography>
                     <Typography variant="body1" component="div">
-                        imanemail@hello.com
+                        {profile.email}
                     </Typography>
                     <Typography variant="body1" component="div">
-                        999-999-9999
+                        {profile.phone}
+                    </Typography>
+                    <Typography variant="body2" component="div">
+                        {profile.address} {profile.city}, {profile.state} {profile.zip}
                     </Typography>
                 </CardContent>
             </CardActionArea>
