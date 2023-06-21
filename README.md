@@ -4,11 +4,12 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 This project also utilizes the following libraries:
 - [MUI](https://mui.com/material-ui/getting-started/overview/) for a design system and component library
+- [React Router v5](https://v5.reactrouter.com/web/guides/quick-start) for routing
 
 Criteria:
 
 - [X] Allow all employee profiles to be viewed on a single screen
-- [ ] Allow a single employee profile to be viewed
+- [X] Allow a single employee profile to be viewed
 - [ ] Allow a new employee profile to be created
 - [ ] Allow an existing employee profile to be updated
 
