@@ -7,7 +7,7 @@ This project also utilizes the following libraries:
 
 Criteria:
 
-- [ ] Allow all employee profiles to be viewed on a single screen
+- [X] Allow all employee profiles to be viewed on a single screen
 - [ ] Allow a single employee profile to be viewed
 - [ ] Allow a new employee profile to be created
 - [ ] Allow an existing employee profile to be updated
