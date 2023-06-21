@@ -1,11 +1,13 @@
 import React from 'react';
 import './App.css';
+import ProfileList from "./features/profileList";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        I'm an empty app
+          Here's some profiles mebbe, made with MUI
+          <ProfileList/>
       </header>
     </div>
   );
