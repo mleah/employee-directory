@@ -1,0 +1,2 @@
+export const apiKey = process.env.REACT_APP_API_KEY ? process.env.REACT_APP_API_KEY : "";
+export const apiProfilesUrl = process.env.REACT_APP_PROFILES_ENDPOINT ? process.env.REACT_APP_PROFILES_ENDPOINT : "";

@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import ProfileList from "./features/profileList";
+import ProfileList from "./features/profiles/profileList";
 
 function App() {
   return (
