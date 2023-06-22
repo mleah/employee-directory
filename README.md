@@ -10,8 +10,8 @@ Criteria:
 
 - [X] Allow all employee profiles to be viewed on a single screen
 - [X] Allow a single employee profile to be viewed
-- [ ] Allow a new employee profile to be created
 - [ ] Allow an existing employee profile to be updated
+- [ ] Allow a new employee profile to be created
 
 
 
@@ -36,6 +36,25 @@ See the section about [running tests](https://facebook.github.io/create-react-ap
 
 My overall approach to this problem was to build stubs for most of the feature work and begin utilizing some libraries in the React ecosystem as I encountered places where it seemed appropriate.  I utilized libraries I am familiar with, while also trying to meet some of the bonus for this code challenge.
 <br/>
+I haven't used MUI components, Redux toolkit (though I have experience with redux), or base React Router (I am familiar with [connected-react-router](https://github.com/supasate/connected-react-router), which is now deprecated) prior.
+<br/>
+My goal was to only code for a couple hours and see where I got.  There's some starting points for pair programming I'd like to look at in the ToDos below.
+
+There's also multiple areas I would improve on this app in the future listed below, in no particular order.
+
+UI/UX improvements:
+* Update general styling, currently styling is relatively basic as I focused more on functionality
+* Perhaps utilize [emotion](https://emotion.sh/docs/introduction) or [styled-components](https://styled-components.com/) for custom components
+* Utilize theming from MUI and brush up on best practices - it's been years since I've used the material design system and there's definitely some (re)learning involved!
+
+Architecture/Code improvements:
+* API key + endpoints are currently stored in `.env` file, which is not secret in the app if this were to go to prod.  Obfuscate the api key via server. (hiding api endpoints in this challenge so they do not appear in github searches.  no peeking!)
+* Really miss connected-react-router and having history live in the redux store.  Find an alternative or determine best practices around router and history not being tied with app state.
+* Add some basic tests
+* Improve typing
+
+ToDos in code (good place for pair programming):
+- Hook up the edit profile api call to the edit profile page
 
 
 
