@@ -1,10 +1,13 @@
 import React, {useState} from "react";
-import {Box, Button, TextField} from "@mui/material";
+import {Box, Button, TextField, Typography} from "@mui/material";
 import {useSelector} from "react-redux";
 import {selectCurrentProfile} from "./profileSlice";
+import {useHistory} from "react-router-dom";
 
 function EditProfile() {
     const profileData = useSelector(selectCurrentProfile);
+    const history = useHistory();
+
 
     // meh on the optional chaining here, would be a refactor to rethink how to address profileData potentially being undefined
     // if it is undefined for any reason, there will be some weird-ness since the form will start uncontrolled and become controlled
@@ -35,14 +38,28 @@ function EditProfile() {
         console.log("Clicky click I'm a profile", updatedProfile);
     }
 
+    const handleBackClick = () => history.push(`/employeeDirectory/profile/${profileData?.id}`);
+
     return (
-        <Box
-            component="form"
-            noValidate
-            autoComplete="off"
-        >
-            <div>
+        <div>
+            <Box display={"flex"} sx={{flexStart: "left", paddingTop: "10px", paddingLeft: "10px"}}>
+                <Button variant="contained"
+                        onClick={handleBackClick}
+                        sx={{textAlign: "left"}}>Go back</Button>
+            </Box>
+            <Box
+                component="form"
+                noValidate
+                autoComplete="off"
+                display={"flex"}
+                flexDirection={"column"}
+                sx={{backgroundColor: "#f0e7ce", width: "400px", margin: "auto", borderRadius: "1rem"}}
+            >
+                <Typography gutterBottom variant="h4">
+                    Edit info for {`${profileData!.first_name} ${profileData!.last_name}`}
+                </Typography>
                 <TextField
+                    sx={{margin: "10px"}}
                     required
                     id="first-name"
                     label="First Name"
@@ -50,6 +67,7 @@ function EditProfile() {
                     onChange={e => setFirstName(e.target.value)}
                 />
                 <TextField
+                    sx={{margin: "10px"}}
                     required
                     id="last-name"
                     label="Last Name"
@@ -57,6 +75,7 @@ function EditProfile() {
                     onChange={e => setLastName(e.target.value)}
                 />
                 <TextField
+                    sx={{margin: "10px"}}
                     required
                     id="email"
                     label="Email"
@@ -64,6 +83,7 @@ function EditProfile() {
                     onChange={e => setEmail(e.target.value)}
                 />
                 <TextField
+                    sx={{margin: "10px"}}
                     required
                     id="phone-number"
                     label="Phone Number"
@@ -71,6 +91,7 @@ function EditProfile() {
                     onChange={e => setPhoneNumber(e.target.value)}
                 />
                 <TextField
+                    sx={{margin: "10px"}}
                     required
                     id="address"
                     label="Address"
@@ -78,6 +99,7 @@ function EditProfile() {
                     onChange={e => setAddress(e.target.value)}
                 />
                 <TextField
+                    sx={{margin: "10px"}}
                     required
                     id="city"
                     label="City"
@@ -85,6 +107,7 @@ function EditProfile() {
                     onChange={e => setCity(e.target.value)}
                 />
                 <TextField
+                    sx={{margin: "10px"}}
                     required
                     id="state"
                     label="State"
@@ -92,15 +115,16 @@ function EditProfile() {
                     onChange={e => setStateAddress(e.target.value)}
                 />
                 <TextField
+                    sx={{margin: "10px"}}
                     required
                     id="zipcode"
                     label="Zip"
                     value={zipcode}
                     onChange={e => setZipcode(e.target.value)}
                 />
-            </div>
-            <Button variant="outlined" onClick={e => { onSaveClick(e) }}>SAVE</Button>
-        </Box>
+                <Button sx={{margin: "10px"}} variant="contained" onClick={e => { onSaveClick(e) }}>SAVE</Button>
+            </Box>
+        </div>
     )
 }
 

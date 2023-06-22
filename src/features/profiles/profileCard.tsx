@@ -1,6 +1,6 @@
 import React from "react";
 import {useHistory} from "react-router-dom";
-import {Card, CardActionArea, CardContent, CardMedia, Typography} from "@mui/material";
+import {Box, Card, CardActionArea, CardContent, CardMedia, Divider, Typography} from "@mui/material";
 import {Profile} from "./profileModels";
 import {profileSlice} from "./profileSlice";
 import {useAppDispatch} from "../../app/hooks";
@@ -29,13 +29,16 @@ function ProfileCard(props: {profile: Profile}) {
                     <Typography gutterBottom variant="h5" component="div">
                         {profile.first_name} {profile.last_name}
                     </Typography>
-                    <Typography variant="body1" component="div">
-                        {profile.email}
-                    </Typography>
-                    <Typography variant="body1" component="div">
-                        {profile.phone}
-                    </Typography>
                 </CardContent>
+                <Divider light />
+                <Box display={'flex'}>
+                    <Box p={2} flex={'auto'}>
+                        <p>{profile.email}</p>
+                    </Box>
+                    <Box p={2} flex={'auto'}>
+                        <p>{profile.phone}</p>
+                    </Box>
+                </Box>
             </CardActionArea>
         </Card>
     );
