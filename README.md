@@ -13,7 +13,19 @@ Criteria:
 - [ ] Allow an existing employee profile to be updated
 - [ ] Allow a new employee profile to be created
 
+## Running the project
 
+You'll need an api key and the urls for the code challenge for the project to run.
+<br/>
+<br/>
+1.  Create a `.env` file in the project root.
+2. Add the following environment variables, with their corresponding data:
+```
+REACT_APP_API_KEY=api_key_here
+REACT_APP_PROFILES_ENDPOINT=get_all_profiles_endpoint_here
+REACT_APP_PROFILE_BASE_ENDPOINT=post_profile_endpoint_here
+```
+3.  Run the project according to the directions below.
 
 ## Available Scripts
 
@@ -55,6 +67,7 @@ Architecture/Code improvements:
 
 ToDos in code (good place for pair programming):
 - Hook up the edit profile api call to the edit profile page
+- Build the add a new profile feature
 
 
 
