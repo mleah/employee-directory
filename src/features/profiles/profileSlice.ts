@@ -1,6 +1,6 @@
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {Profile} from "./profileModels";
-import {apiKey, apiProfilesUrl} from "../../constants";
+import {apiKey, apiProfileBaseUrl, apiProfilesUrl} from "../../constants";
 import {RootState} from "../../app/store";
 
 type EmployeesState = {
@@ -27,6 +27,22 @@ export const fetchAllProfiles = createAsyncThunk<any[]>(
     }
 );
 
+//TODO: Use this in the EditProfileForm component
+export const updateEmployeeProfile = createAsyncThunk<Profile, Profile>(
+    'profiles/updateEmployee', async (profileData, thunkApi) => {
+        const response = await fetch(`${apiProfileBaseUrl}${profileData.id}`, {
+            method: "PUT",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                "token": apiKey
+            },
+            body: JSON.stringify(profileData)
+        })
+        return (await response.json());
+    }
+);
+
 //works for now, maybe split apart profiles and single profile? we'll see
 export const profileSlice = createSlice({
     name: 'profiles',
@@ -46,6 +62,18 @@ export const profileSlice = createSlice({
                 state.all_profiles = action.payload;
             })
             .addCase(fetchAllProfiles.rejected, (state) => {
+                state.status = 'failed';
+            })
+            // Currently the status of both profile api calls is shared, future direction would be to separate this/ maybe have an api Slice specifically
+            .addCase(updateEmployeeProfile.pending, (state) => {
+                state.status = 'loading';
+            })
+            .addCase(updateEmployeeProfile.fulfilled, (state, action) => {
+                state.status = 'fulfilled';
+                const profileIndex = state.all_profiles.findIndex(x => x.id === action.payload.id);
+                state.all_profiles[profileIndex] = action.payload;
+            })
+            .addCase(updateEmployeeProfile.rejected, (state) => {
                 state.status = 'failed';
             })
     },
